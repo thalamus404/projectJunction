@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linkliste</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin: 10px 0;
+        }
+        a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Linkliste</h1>
+        <form id="linkForm">
+            <input type="text" id="linkName" placeholder="Link Name" required>
+            <input type="text" id="linkURL" placeholder="Link URL" required>
+            <button type="submit">Link hinzufügen</button>
+        </form>
+        <ul id="linkList">
+            <li><a href="https://www.google.com" target="_blank">Google</a></li>
+            <li><a href="https://www.wikipedia.org" target="_blank">Wikipedia</a></li>
+            <li><a href="https://www.github.com" target="_blank">GitHub</a></li>
+            <li><a href="https://www.stackoverflow.com" target="_blank">Stack Overflow</a></li>
+            <li><a href="https://www.reddit.com" target="_blank">Reddit</a></li>
+        </ul>
+    </div>
+
+    <script>
+        document.getElementById('linkForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const linkName = document.getElementById('linkName').value;
+            const linkURL = document.getElementById('linkURL').value;
+
+            if (linkName && linkURL) {
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = linkURL;
+                a.textContent = linkName;
+                a.target = '_blank';
+                li.appendChild(a);
+                document.getElementById('linkList').appendChild(li);
+
+                // Reset form fields
+                document.getElementById('linkName').value = '';
+                document.getElementById('linkURL').value = '';
+            }
+        });
+    </script>
+</body>
+</html>
